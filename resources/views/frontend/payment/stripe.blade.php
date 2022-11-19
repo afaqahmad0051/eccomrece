@@ -8,6 +8,9 @@ stripe
 سٹرائپ
 @endif
 @endsection
+{{-- Stipe Links  --}}
+{{-- https://stripe.com/docs/payments/accept-a-payment-charges --}}
+{{-- https://stripe.com/docs/payments/charges-api --}}
 <style>
     /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -90,7 +93,16 @@ stripe
                                 <form action="{{ route('stripe.order') }}" method="post" id="payment-form">
                                     @csrf
                                     <div class="form-row">
-                                        <label for="card-element"> Credit or debit card </label>
+                                        <label for="card-element">
+                                            <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
+                                            <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">
+                                            <input type="hidden" name="phone" value="{{ $data['shipping_phone'] }}">
+                                            <input type="hidden" name="post_code" value="{{ $data['post_code'] }}">
+                                            <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
+                                            <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
+                                            <input type="hidden" name="area_id" value="{{ $data['area_id'] }}">
+                                            <input type="hidden" name="notes" value="{{ $data['notes'] }}">
+                                        </label>
                                         
                                         <div id="card-element">
                                         <!-- A Stripe Element will be inserted here. -->

@@ -57,7 +57,7 @@ Checkout
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <div class="form-group" style="text-align: left;">
                                                     <label class="info-title">City <span class="text-danger">*</span></label>
-                                                    <select class="form-control erp-form-control-sm city_id" id="city_id" name="city_id">
+                                                    <select class="form-control erp-form-control-sm city_id" id="city_id" name="district_id">
                                                         <option value="" selected disabled>Select City</option>
                                                         @foreach($divisions as $country)
                                                         <optgroup label="{{$country->division_name}}">

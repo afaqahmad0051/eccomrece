@@ -111,6 +111,7 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
             ]);
             return response()->json(array(
+                'validity' => true,
                 'success' => 'Coupon Applied Successfully'
             ));
         }else{
@@ -179,7 +180,7 @@ class CartController extends Controller
         $data['shipping_email'] = $request->shipping_email;
         $data['shipping_phone'] = $request->shipping_phone;
         $data['post_code'] = $request->post_code;
-        $district_id = ShippingDistrict::where('id', $request->city_id)->first();
+        $district_id = ShippingDistrict::where('id', $request->district_id)->first();
         // dump($district_id->division_id);
         $division_id = ShippingDivision::where('id', $district_id->division_id)->first();
         // dump($division_id->id);
