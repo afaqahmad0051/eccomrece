@@ -198,8 +198,7 @@ class CartController extends Controller
             return 'card';
             // return view('frontend.payment.card',compact('data'));
         }else{
-            return 'cash';
-            // return view('frontend.payment.cash',compact('data'));
+            return view('frontend.payment.cash',compact('data','cartTotal'));
         }
 
     }

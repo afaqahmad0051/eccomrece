@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\ShippingDistrict;
@@ -199,11 +200,14 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'], 'namespace'=>'User
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     //Stripe Payments
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+    //Cash Payment
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
     //My Orders
     Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     
     Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
-
+    
+    Route::get('/invoice-download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
 });
 //Cart View Page
 Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
