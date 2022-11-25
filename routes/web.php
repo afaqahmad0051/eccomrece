@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
@@ -146,6 +147,17 @@ Route::prefix('shipping')->group(function () {
     Route::get('/area/edit/{id}', [ShippingAreaController::class, 'AreaEdit'])->name('area.edit');
     Route::post('/area/update/{id}', [ShippingAreaController::class, 'AreaUpdate'])->name('area.update');
     Route::get('/area/delete/{id}', [ShippingAreaController::class, 'AreaDelete'])->name('area.delete');
+});
+//Admin Orders Routes
+Route::prefix('orders')->group(function () {
+    Route::get('/pending', [OrderController::class, 'PendingOrders'])->name('pending-orders');
+    Route::get('/pending/details/{order_id}', [OrderController::class, 'PendingOrderDetails'])->name('pending.order.details');
+    Route::get('/confirmed', [OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
+    Route::get('/processing', [OrderController::class, 'ProcessingOrders'])->name('processing-orders');
+    Route::get('/picked', [OrderController::class, 'PickedOrders'])->name('picked-orders');
+    Route::get('/shipped', [OrderController::class, 'ShippedOrders'])->name('shipped-orders');
+    Route::get('/delivered', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
+    Route::get('/cancelled', [OrderController::class, 'CancelledOrders'])->name('cancelled-orders');
 });
 
 
