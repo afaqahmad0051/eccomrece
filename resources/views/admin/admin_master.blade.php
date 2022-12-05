@@ -69,32 +69,7 @@
     <script src="{{asset('backend/js/toaster.min.js')}}"></script>
     <!-- Sweet Alert Link -->
     <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-    <script>
-        $(function() {
-            $(document).on('click', '#delete', function(e) {
-                e.preventDefault();
-                var link = $(this).attr("href");
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Delete This Data Permanently!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = link
-                        Swal.fire(
-                            'Deleted!',
-                            'User has been deleted.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        });
-    </script>
+    <script src="{{asset('backend/js/sweetalert.js')}}"></script>
     <script>
         @if(Session::has('message'))
         var type = "{{ Session::get('alert-type','info') }}"

@@ -158,6 +158,13 @@ Route::prefix('orders')->group(function () {
     Route::get('/shipped', [OrderController::class, 'ShippedOrders'])->name('shipped-orders');
     Route::get('/delivered', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
     Route::get('/cancelled', [OrderController::class, 'CancelledOrders'])->name('cancelled-orders');
+    Route::get('/pending-to-confirm/{order_id}', [OrderController::class, 'PendingToConfirm'])->name('pending-confirm');
+    Route::get('/confirm-to-processing/{order_id}', [OrderController::class, 'ConfirmToProcessing'])->name('confirm-processing');
+    Route::get('/processing-to-picked/{order_id}', [OrderController::class, 'ProcessingToPicked'])->name('processing-to-picked');
+    Route::get('/picked-to-shipped/{order_id}', [OrderController::class, 'PickedToShipped'])->name('picked-to-shipped');
+    Route::get('/shipped-to-delivered/{order_id}', [OrderController::class, 'ShippedToDelivered'])->name('shipped-to-delivered');
+    Route::get('/delivered-to-cancelled/{order_id}', [OrderController::class, 'DeliveredToCancelled'])->name('delivered-to-cancelled');
+    Route::get('/invoice/download/{order_id}', [OrderController::class, 'InvoiceDownload'])->name('invoice.download');
 });
 
 

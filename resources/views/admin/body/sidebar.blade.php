@@ -21,7 +21,7 @@ $route = Route::current()->getName();
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-            <li>
+            <li class="{{ ($route == 'dashboard')?'active':'' }}">
                 <a href="{{url('admin/dashboard')}}">
                     <i data-feather='home'></i>
                     <span>Dashboard</span>
@@ -111,7 +111,7 @@ $route = Route::current()->getName();
             </li>
             <li class="treeview {{ ($prefix == '/orders')?'active':'' }}">
                 <a href="#">
-                    <i data-feather='map-pin'></i>
+                    <i data-feather='send'></i>
                     <span>Orders</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
