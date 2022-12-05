@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Product</h3>
+                    <h3 class="box-title">Product <span class="bage badge-pill badge-danger" style="font-size: 18px;">{{ count($products) }}</span></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

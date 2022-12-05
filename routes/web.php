@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ReportsController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -167,6 +168,22 @@ Route::prefix('orders')->group(function () {
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'InvoiceDownload'])->name('invoice.download');
 });
 
+//Admin Reports Routes
+Route::prefix('reports')->group(function () {
+    Route::get('/view', [ReportsController::class, 'ReportView'])->name('all-reports');
+    Route::post('/search-by-date', [ReportsController::class, 'SearchByDateReport'])->name('search-by-date');
+    Route::post('/search-by-month', [ReportsController::class, 'SearchByMonthReport'])->name('search-by-month');
+    Route::post('/search-by-year', [ReportsController::class, 'SearchByYearReport'])->name('search-by-year');
+});
+
+//Admin All Users Routes
+Route::prefix('users')->group(function () {
+    Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+    // Route::post('/search-by-date', [ReportsController::class, 'SearchByDateReport'])->name('search-by-date');
+    // Route::post('/search-by-month', [ReportsController::class, 'SearchByMonthReport'])->name('search-by-month');
+    // Route::post('/search-by-year', [ReportsController::class, 'SearchByYearReport'])->name('search-by-year');
+});
+
 
 
 //User All Routes
@@ -223,10 +240,14 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'], 'namespace'=>'User
     Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
     //My Orders
     Route::get('/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
+    Route::get('/return/orders/list', [AllUserController::class, 'ReturnOrderList'])->name('return.orders');
+    Route::get('/cancel/orders/list', [AllUserController::class, 'CancelOrderList'])->name('cancelled.orders.list');
     
     Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
     
     Route::get('/invoice-download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
+
+    Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
 });
 //Cart View Page
 Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');

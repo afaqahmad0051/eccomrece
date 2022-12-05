@@ -141,10 +141,21 @@
                 </div>
             </div>
             @if ($order->status == "delivered")
-                <div class="form-group">
-                    <label for="label">Order Return Reason: </label>
-                    <textarea name="return_reason" class="form-control" id="" cols="30" rows="05"></textarea>
-                </div>
+                @php
+                    $order = App\Models\Order::where('id',$order->id)->where('return_reason','=',null)->first();
+                @endphp
+                @if ($order)
+                    <form action="{{ route('return.order',$order->id) }}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="label">Order Return Reason: </label>
+                            <textarea name="return_reason" class="form-control" id="" cols="30" rows="05"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Request Return</button>
+                    </form><br><br>                
+                @else
+                    <span class="badge badge-pill badge-warning" style="background:red;">Return request sent for this product</span>
+                @endif
             @endif
         </div>
     </div>
